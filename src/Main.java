@@ -2,18 +2,16 @@ import java.util.*;
 
 public class Main extends Game {
 
-
+    private static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
         boolean correct = false;
         ArrayList<String> prevGuesses = new ArrayList<>();
         String guess;
-        Scanner sc = new Scanner(System.in);
-        String wordListFile = "answers.txt";
-        String possibleListFile = "possible.txt";
+
         int noGuesses = 0;
 
-        getWord(1);
+        getWord(options());
         //System.out.println(COL_YELLOW + "word: " + word + COL_RESET);
         while (noGuesses < 6) {
             boolean guessExists = false;
@@ -69,5 +67,10 @@ public class Main extends Game {
         }*/
     }
 
-
+    private static int options() {
+        System.out.println(COL_GREEN + "WORD GUESS" + COL_RESET + "\nby Harry M. \n===========\n");
+        System.out.println("Select an option:\n1. Daily word\n2. Random word");
+        System.out.println("\nEnter option no: ");
+        return sc.nextInt();
+    }
 }

@@ -26,13 +26,17 @@ public abstract class Game {
 
     public static void getWord(int mode) {
         int wordNum;
-        if (mode == 1) {
+        if (mode == 2) {
             Random rand = new Random();
             wordNum = rand.nextInt(2315);
         } else {
             LocalDate start = LocalDate.parse("25 02 2022", DateTimeFormatter.ofPattern("dd MM yyyy"));
             LocalDate today = LocalDate.now();
-            wordNum = (int) (DAYS.between(start, today) + 254);
+            long days = (DAYS.between(start, today) + 254);
+            while (days > 2315)
+                days -= 2315;
+
+            wordNum = (int) days;
         }
 
         String data = null;
@@ -49,7 +53,7 @@ public abstract class Game {
             e.printStackTrace();
         }
         word = data;
-        System.out.println("Word after random gen: " + word);
+        //System.out.println("Word after random gen: " + word);
     }
 
     public static boolean checkIfPossible(String filename, String guess) {
